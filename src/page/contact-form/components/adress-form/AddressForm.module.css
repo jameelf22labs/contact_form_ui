@@ -128,7 +128,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-
 .inputBox {
   display: flex;
   flex-direction: column;
@@ -163,5 +162,15 @@ input[type="checkbox"] {
 
   .submitButton {
     width: 100%;
+  }
+
+  .location input,
+  .inputField input {
+    font-size: 18px;
+  }
+
+  .inputField input::placeholder,
+  .location input::placeholder {
+    font-size: 1.2rem;
   }
 }
