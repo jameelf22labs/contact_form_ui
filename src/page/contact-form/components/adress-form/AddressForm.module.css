@@ -33,10 +33,12 @@
 
 .inputField input {
   width: 100%;
-  padding: 10px 20px 20px;
+  padding: 10px 20px 10px;
   border: none;
   border-bottom: 2px solid #737b7d;
   outline: none;
+  font-size: 30px;
+  position: relative;
 }
 
 .location {
@@ -52,13 +54,13 @@
   border: none;
   border-bottom: 2px solid #737b7d;
   outline: none;
+  font-size: 30px;
 }
-
 
 .inputField input::placeholder,
 .location input::placeholder {
   color: #737b7d;
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 .fileUpload {
@@ -70,18 +72,13 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 12px;
+  padding: 42px;
   cursor: pointer;
-}
-
-.fileUpload:hover {
-  border: 2px dashed #6de1c2;
-  color: #6de1c2;
 }
 
 .fileUpload span {
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   color: #8e8e8e;
 }
 
@@ -129,7 +126,6 @@ input[type="checkbox"] {
   font-size: 16px;
   border: none;
   cursor: pointer;
-
 }
 
 .submitButton:disabled {
@@ -146,8 +142,9 @@ input[type="checkbox"] {
 .error {
   color: #dc2626;
   font-size: 14px;
-  margin: 0;
+  margin-top: 70px;
   padding-left: 4px;
+  position: absolute;
 }
 
 @media (max-width: 768px) {
@@ -162,7 +159,6 @@ input[type="checkbox"] {
   .desc {
     font-size: 13px;
   }
-
 
   .agree {
     flex-direction: column;

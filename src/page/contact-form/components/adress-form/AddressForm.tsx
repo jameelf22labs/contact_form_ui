@@ -14,6 +14,8 @@ const AddressForm = ({
   formState,
   setFormState,
 }: AddressFormProps): JSX.Element => {
+  const [isChecked, setIsChecked] = React.useState(true);
+
   const form = useForm({
     defaultValues: {
       ...formState,
@@ -54,6 +56,7 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="Contact name"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
                   <em role="alert" className={Style.error}>
@@ -81,6 +84,7 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="Street"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
                   <em role="alert" className={Style.error}>
@@ -108,9 +112,10 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="City"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
-                  <em role="alert" className={Style.error}>
+                  <em role="alert" style={{ marginTop : 90 }} className={Style.error}>
                     {field.state.meta.errors.join(", ")}
                   </em>
                 )}
@@ -136,9 +141,10 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="Post code"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
-                  <em role="alert" className={Style.error}>
+                  <em role="alert" style={{ marginTop : 90 }} className={Style.error}>
                     {field.state.meta.errors.join(", ")}
                   </em>
                 )}
@@ -150,10 +156,16 @@ const AddressForm = ({
           <form.Field
             name="phone"
             validators={{
-              onChange: ({ value }) =>
-                value.trim().length === 0
-                  ? "Phone number field is required"
-                  : undefined,
+              onChange: ({ value }) => {
+                const trimmed = value.trim();
+                if (trimmed.length === 0) {
+                  return "Phone number field is required";
+                }
+                if (!/^\d{10}$/.test(trimmed)) {
+                  return "Phone number must be 10 digits";
+                }
+                return undefined;
+              },
             }}
           >
             {(field) => (
@@ -163,6 +175,7 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="Phone number"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
                   <em role="alert" className={Style.error}>
@@ -192,6 +205,7 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="E - mail"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
                   <em role="alert" className={Style.error}>
@@ -212,6 +226,7 @@ const AddressForm = ({
                   value={field.state.value}
                   placeholder="Let’s talk about your idea"
                   onChange={(e) => field.handleChange(e.target.value)}
+                  onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
                   <em role="alert" className={Style.error}>
@@ -241,11 +256,25 @@ const AddressForm = ({
       </span>
 
       <div className={Style.agree}>
-        <input type="checkbox" />
-        <span>I want to protect my data by signing an NDA</span>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onClick={(e) => setIsChecked(!isChecked)}
+        />
+        <span onClick={(e) => setIsChecked(!isChecked)}>
+          I want to protect my data by signing an NDA
+        </span>
       </div>
 
-      <button disabled={!form.state.canSubmit} className={Style.submitButton} type="submit" onClick={() => {}}>
+      <button
+        disabled={!form.state.canSubmit}
+        className={Style.submitButton}
+        type="submit"
+        onClick={() => {
+          console.log(form.state.errors);
+          console.log(form.state.canSubmit);
+        }}
+      >
         SUBMIT
       </button>
     </div>
