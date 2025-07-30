@@ -1,9 +1,8 @@
 .addressFormContainer {
   width: 90%;
-  height: 80%;
-  margin: 80px auto;
+  max-width: 800px;
+  margin: 40px auto;
   padding: 10px;
-  margin-left: 160px;
 }
 
 .heading {
@@ -13,8 +12,6 @@
 }
 
 .heading span {
-  font-weight: 600;
-  font-size: 46px;
   color: #6de1c2;
 }
 
@@ -24,7 +21,6 @@
   color: #000000;
   margin-top: 20px;
   text-align: left;
-  text-wrap: wrap;
 }
 
 .inputWrapper {
@@ -36,7 +32,7 @@
 }
 
 .inputField input {
-  min-width: 80%;
+  width: 100%;
   padding: 10px 20px 20px;
   border: none;
   border-bottom: 2px solid #737b7d;
@@ -45,31 +41,42 @@
 
 .location {
   display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
 }
 
 .location input {
-  min-width: 40%;
+  width: 100%;
   padding: 20px;
   border: none;
   border-bottom: 2px solid #737b7d;
   outline: none;
 }
 
+
 .inputField input::placeholder,
 .location input::placeholder {
   color: #737b7d;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .fileUpload {
   margin-top: 20px;
-  height: 10%;
+  height: auto;
   border: 1px dashed #8e8e8e;
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.fileUpload:hover {
+  border: 2px dashed #6de1c2;
+  color: #6de1c2;
 }
 
 .fileUpload span {
@@ -78,10 +85,25 @@
   color: #8e8e8e;
 }
 
+.uploadIcon {
+  width: 30px;
+  height: 30px;
+  color: #737b7d;
+}
+
+.fileNote {
+  font-weight: 400;
+  font-size: 13px;
+  color: #8e8e8e;
+  margin-top: 10px;
+  display: inline-block;
+}
+
 .agree {
   margin-top: 20px;
   display: flex;
   gap: 12px;
+  align-items: center;
 }
 
 .agree span {
@@ -93,4 +115,61 @@
 input[type="checkbox"] {
   height: 20px;
   width: 20px;
+}
+
+.submitButton {
+  border-radius: 16px;
+  background-color: #0982fe;
+  color: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 14px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 32px;
+  }
+
+  .heading span {
+    font-size: 32px;
+  }
+
+  .desc {
+    font-size: 13px;
+  }
+
+
+  .agree {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
 }

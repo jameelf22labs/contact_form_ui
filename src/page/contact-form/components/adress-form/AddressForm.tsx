@@ -14,13 +14,13 @@ const AddressForm = ({
   formState,
   setFormState,
 }: AddressFormProps): JSX.Element => {
-  
   const form = useForm({
     defaultValues: {
       ...formState,
     },
     onSubmit: async ({ value }) => {
       setFormState(value);
+      console.log(value);
     },
   });
 
@@ -40,151 +40,213 @@ const AddressForm = ({
         <div className={Style.inputField}>
           <form.Field
             name="contactName"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="Contact name"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) =>
+                value.trim().length === 0
+                  ? "Contact field name is required"
+                  : undefined,
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="Contact name"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
-
         <div className={Style.inputField}>
           <form.Field
             name="street"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="Street"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) =>
+                value.trim().length === 0
+                  ? "Street field is required"
+                  : undefined,
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="Street"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
-
-        <div className={`${Style.location}`}>
+        <div className={Style.location}>
           <form.Field
             name="city"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="City"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) =>
+                value.trim().length === 0
+                  ? "City field is required"
+                  : undefined,
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="City"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
 
           <form.Field
             name="postcode"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="Post code"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) => {
+                const pinRegex = /^[1-9][0-9]{5}$/;
+                if (value.trim().length === 0) return "Post field is required";
+                if (!pinRegex.test(value))
+                  return "Please enter a valid 6-digit postcode";
+              },
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="Post code"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
-
         <div className={Style.inputField}>
           <form.Field
             name="phone"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="Phone number"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) =>
+                value.trim().length === 0
+                  ? "Phone number field is required"
+                  : undefined,
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="Phone number"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
-
         <div className={Style.inputField}>
           <form.Field
             name="email"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="E - mail"
-                  />
-                </React.Fragment>
-              );
+            validators={{
+              onChange: ({ value }) => {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (value.trim().length === 0) return "Email field is required";
+                if (!emailRegex.test(value))
+                  return "Please enter a valid email address";
+              },
             }}
-          />
+          >
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="E - mail"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
 
         <div className={Style.inputField}>
-          <form.Field
-            name="idea"
-            children={(field) => {
-              return (
-                <React.Fragment>
-                  <input
-                    type="text"
-                    value={field.state.value}
-                    placeholder="Let’s talk about your idea"
-                  />
-                </React.Fragment>
-              );
-            }}
-          />
+          <form.Field name="idea">
+            {(field) => (
+              <div className={Style.inputBox}>
+                <input
+                  type="text"
+                  value={field.state.value}
+                  placeholder="Let’s talk about your idea"
+                  onChange={(e) => field.handleChange(e.target.value)}
+                />
+                {!field.state.meta.isValid && (
+                  <em role="alert" className={Style.error}>
+                    {field.state.meta.errors.join(", ")}
+                  </em>
+                )}
+              </div>
+            )}
+          </form.Field>
         </div>
       </div>
 
-      <div className={Style.fileUpload}>
-        <MdOutlineFileUpload
-          style={{ width: 30, height: 30, color: "#737B7D" }}
-        />
-        <span> Upload Additional file </span>
-      </div>
-
-      <span
-        style={{
-          fontWeight: 400,
-          fontSize: "13px",
-          color: "#8E8E8E",
-          marginTop: "10px",
+      <div
+        className={Style.fileUpload}
+        onClick={() => {
+          const elem = document.createElement("input");
+          elem.type = "file";
+          elem.click();
         }}
       >
-        {" "}
-        Attach file. File size of your documents should not exceed 10MB{" "}
+        <MdOutlineFileUpload className={Style.uploadIcon} />
+        <span>Upload Additional file</span>
+      </div>
+
+      <span className={Style.fileNote}>
+        Attach file. File size of your documents should not exceed 10MB
       </span>
 
       <div className={Style.agree}>
         <input type="checkbox" />
-        <span> I want to protect my data by signing an NDA </span>
+        <span>I want to protect my data by signing an NDA</span>
       </div>
 
-      <button
-        className="rounded-2xl bg-[#0982FE] text-[#ffffff] w-[80%]"
-        style={{ marginTop: 20, padding: 20 }}
-      >
-        {" "}
-        SUBMIT{" "}
+      <button disabled={!form.state.canSubmit} className={Style.submitButton} type="submit" onClick={() => {}}>
+        SUBMIT
       </button>
     </div>
   );
