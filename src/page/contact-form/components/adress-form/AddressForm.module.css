@@ -1,0 +1,96 @@
+.addressFormContainer {
+  width: 90%;
+  height: 80%;
+  margin: 80px auto;
+  padding: 10px;
+  margin-left: 160px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 24px;
+}
+
+.heading span {
+  font-weight: 600;
+  font-size: 46px;
+  color: #6de1c2;
+}
+
+.desc {
+  font-weight: 400;
+  font-size: 14px;
+  color: #000000;
+  margin-top: 20px;
+  text-align: left;
+  text-wrap: wrap;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.inputField input {
+  min-width: 80%;
+  padding: 10px 20px 20px;
+  border: none;
+  border-bottom: 2px solid #737b7d;
+  outline: none;
+}
+
+.location {
+  display: flex;
+}
+
+.location input {
+  min-width: 40%;
+  padding: 20px;
+  border: none;
+  border-bottom: 2px solid #737b7d;
+  outline: none;
+}
+
+.inputField input::placeholder,
+.location input::placeholder {
+  color: #737b7d;
+  font-size: 1.2rem;
+}
+
+.fileUpload {
+  margin-top: 20px;
+  height: 10%;
+  border: 1px dashed #8e8e8e;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.fileUpload span {
+  font-weight: 400;
+  font-size: 14px;
+  color: #8e8e8e;
+}
+
+.agree {
+  margin-top: 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.agree span {
+  font-weight: 400;
+  font-size: 16px;
+  color: #383c3e;
+}
+
+input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+}
