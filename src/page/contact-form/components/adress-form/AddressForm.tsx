@@ -115,7 +115,11 @@ const AddressForm = ({
                   onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
-                  <em role="alert" style={{ marginTop : 90 }} className={Style.error}>
+                  <em
+                    role="alert"
+                    style={{ marginTop: 90 }}
+                    className={Style.error}
+                  >
                     {field.state.meta.errors.join(", ")}
                   </em>
                 )}
@@ -144,7 +148,11 @@ const AddressForm = ({
                   onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (
-                  <em role="alert" style={{ marginTop : 90 }} className={Style.error}>
+                  <em
+                    role="alert"
+                    style={{ marginTop: 90 }}
+                    className={Style.error}
+                  >
                     {field.state.meta.errors.join(", ")}
                   </em>
                 )}
@@ -267,7 +275,6 @@ const AddressForm = ({
       </div>
 
       <button
-        disabled={!form.state.canSubmit}
         className={Style.submitButton}
         type="submit"
         onClick={() => {

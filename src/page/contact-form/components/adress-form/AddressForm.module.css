@@ -128,10 +128,6 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
-.submitButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
 
 .inputBox {
   display: flex;
