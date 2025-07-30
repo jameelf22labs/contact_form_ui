@@ -15,7 +15,7 @@ const AddressForm = ({
   setFormState,
 }: AddressFormProps): JSX.Element => {
   const [isChecked, setIsChecked] = React.useState(true);
-
+  console.log(formState);
   const form = useForm({
     defaultValues: {
       ...formState,
@@ -165,13 +165,19 @@ const AddressForm = ({
             name="phone"
             validators={{
               onChange: ({ value }) => {
-                const trimmed = value.trim();
-                if (trimmed.length === 0) {
+                const numberOnly = value
+                  .replace("+91", "")
+                  .replace(/\s/g, "")
+                  .trim();
+
+                if (numberOnly.length === 0) {
                   return "Phone number field is required";
                 }
-                if (!/^\d{10}$/.test(trimmed)) {
+
+                if (!/^\d{10}$/.test(numberOnly)) {
                   return "Phone number must be 10 digits";
                 }
+
                 return undefined;
               },
             }}
@@ -181,8 +187,19 @@ const AddressForm = ({
                 <input
                   type="text"
                   value={field.state.value}
-                  placeholder="Phone number"
-                  onChange={(e) => field.handleChange(e.target.value)}
+                  placeholder="+91 8976783344"
+                  onChange={(e) => {
+                    let input = e.target.value;
+                    if (!input.startsWith("+91 ")) {
+                      input = "+91 ";
+                    }
+                    const numberPart = input
+                      .slice(4)
+                      .replace(/\D/g, "")
+                      .slice(0, 10);
+
+                    field.handleChange(`+91 ${numberPart}`);
+                  }}
                   onClick={() => field.handleChange(field.state.value)}
                 />
                 {!field.state.meta.isValid && (

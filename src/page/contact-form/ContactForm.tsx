@@ -10,7 +10,7 @@ const ContactForm = (): JSX.Element => {
     street: "",
     city: "",
     postcode: "",
-    phone: "",
+    phone: "+ 91 ",
     email: "",
     idea: "",
   });
