@@ -1,0 +1,26 @@
+.root {
+  height: 100vh;
+}
+
+.contactFormWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.formWrapper {
+  flex: 1;
+}
+
+.mapWrapper {
+  flex: 1;
+}
+
+@media (max-width: 425px) {
+  .contactFormWrapper {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}

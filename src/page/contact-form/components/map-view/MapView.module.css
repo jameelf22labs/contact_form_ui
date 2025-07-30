@@ -1,0 +1,45 @@
+.mapContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: end;
+}
+
+.mapCard {
+  width: 80%;
+  height: 90%;
+  display: flex;
+  border-top-right-radius: 32px;
+  border-bottom-right-radius: 32px;
+  overflow: hidden;
+  margin: 40px auto;
+}
+
+.mapView {
+  width: 100%;
+  height: 100%;
+}
+
+.bgColor {
+  background-color: #6de1c2;
+  position: absolute;
+  height: 100%;
+  width: 25%;
+}
+
+@media (max-width: 425px) {
+  .bgColor {
+    display: none;
+  }
+
+  .mapCard {
+    width: 100%;
+    height: 100%;
+    margin: 20px auto;
+  }
+
+  .mapView {
+    width: 100%;
+    height: 100%;
+  }
+}
